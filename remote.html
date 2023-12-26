@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi remote car</title>
+</head>
+<body>
+    <div class="container">
+        <button id="F" class="bt" ontouchstart="req('F')" ontouchend="req('S')">↑</button>
+        <button id="B" class="bt" ontouchstart="req('B')" ontouchend="req('S')">↓</button>
+        <button id="L" class="bt" ontouchstart="req('L')" ontouchend="req('S')">←</button>
+        <button id="R" class="bt" ontouchstart="req('R')" ontouchend="req('S')">→</button>
+        <button id="I" class="bt" ontouchstart="req('I')" ontouchend="req('S')">↗</button>
+        <button id="G" class="bt" ontouchstart="req('G')" ontouchend="req('S')">↖</button>
+        <button id="J" class="bt" ontouchstart="req('J')" ontouchend="req('S')">↘</button>
+        <button id="H" class="bt" ontouchstart="req('H')" ontouchend="req('S')">↙</button>
+        <button id="S" class="bt">❌</button>
+    </div>
+    <div class="container">
+        <input type="range" id="mySlider" min="0" max="9" value="5" step="1" oninput="updateSliderValue()">
+    </div>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .container{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+        .bt {
+            width: 20%;
+            height: 20%;
+            position: absolute;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        #F{
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #B{
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #L{
+            bottom: 50%;
+            left: 0;
+            transform: translateY(50%);
+        }
+        #R{
+            bottom: 50%;
+            right: 0;
+            transform: translateY(50%);
+        }
+        #I{
+            top: 0;
+            right: 0;
+        }
+        #G{
+            top: 0;
+            left: 0;
+        }
+        #J{
+            bottom: 0;
+            right: 0;
+        }
+        #H{
+            bottom: 0;
+            left: 0;
+        }
+        #S{
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+    </style>
+    <script>
+        var spd=0;
+        function updateSliderValue() {
+            var sliderValue = document.getElementById("mySlider").value;
+            if(sliderValue!=spd){
+                spd=sliderValue;
+                req(spd+'');
+            }
+        }
+        function req(inp){
+            console.log(inp);
+            fetch(location.href+"?State="+inp)
+                .then(data => {
+                    console.log("success",data);
+                })
+                .catch(error => {
+                    console.error("failed",error);
+                })
+        }
+        var Fb=document.getElementById("F");
+        Fb.addEventListener('mousedown',function(){
+            req('F');
+        })
+        Fb.addEventListener('mouseup',function(){
+            req('S');
+        })
+        var Bb=document.getElementById("B");
+        Bb.addEventListener('mousedown',function(){
+            req('B');
+        })
+        Bb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Lb=document.getElementById("L");
+        Lb.addEventListener('mousedown',function(){
+            req('L');
+        })
+        Lb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Rb=document.getElementById("R");
+        Rb.addEventListener('mousedown',function(){
+            req('R');
+        })
+        Rb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Ib=document.getElementById("I");
+        Ib.addEventListener('mousedown',function(){
+            req('I');
+        })
+        Ib.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Gb=document.getElementById("G");
+        Gb.addEventListener('mousedown',function(){
+            req('G');
+        })
+        Gb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Jb=document.getElementById("J");
+        Jb.addEventListener('mousedown',function(){
+            req('J');
+        })
+        Jb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Hb=document.getElementById("H");
+        Hb.addEventListener('mousedown',function(){
+            req('H');
+        })
+        Hb.addEventListener('mouseup',function(){
+            req('S')
+        })
+        var Sb=document.getElementById("S");
+        Sb.addEventListener('click',function(){
+            req('S');
+        })
+    </script>
+</body>
+</html>

@@ -6,6 +6,7 @@ class Car{
         int leftright2;
         int lr_speed=0;
         int fb_speed=0;
+        double m_speed=1.0;
     public:
         Car(const int fb1,const int fb2,const int lr1,const int lr2){
             forwardback1=fb1;
@@ -26,13 +27,21 @@ class Car{
             lr_speed=in;
             return;
         }
+        void stop(){
+            set_fb_speed(0);
+            set_lr_speed(0);
+        }
+        void set_m_speed(double in){
+            m_speed=in;
+            return;
+        }
         void motor_turn(){
             if(fb_speed>0){
-                analogWrite(forwardback2,fb_speed);
+                analogWrite(forwardback2,(m_speed*fb_speed));
                 analogWrite(forwardback1,0);
             }else if(fb_speed<0){
                 analogWrite(forwardback2,0);
-                analogWrite(forwardback1,-fb_speed);
+                analogWrite(forwardback1,-(m_speed*fb_speed));
             }else{
                 analogWrite(forwardback2,0);
                 analogWrite(forwardback1,0);
