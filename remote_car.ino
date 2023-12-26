@@ -6,6 +6,10 @@
 #include <iostream>
 #include <sstream>
 
+#include "bottom_func.h"
+#include "motors.h"
+#include "page.h"
+
 struct MOTOR_PINS
 {
   int pinEn;  
