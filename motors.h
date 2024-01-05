@@ -7,6 +7,7 @@ class Car{
         int lr_speed=0;
         int fb_speed=0;
         double m_speed=0.5;
+        int turn=0;
     public:
         Car(const int fb1,const int fb2,const int lr1,const int lr2){
             forwardback1=fb1;

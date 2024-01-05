@@ -39,6 +39,8 @@ void handle_command(String raw,Car &carin){
     }else if(c1=='H'){
         carin.set_fb_speed(-255);
         carin.set_lr_speed(150);
+    }else if(c1=='T'){
+        carin.set_lr_speed(0);
     }
 }
 
